@@ -14,6 +14,7 @@
 		32395A7C27C91AC0002D037E /* MapPic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32395A7A27C91AC0002D037E /* MapPic.xcdatamodeld */; };
 		32395A7E27C91AC1002D037E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32395A7D27C91AC1002D037E /* Assets.xcassets */; };
 		32395A8127C91AC1002D037E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32395A7F27C91AC1002D037E /* LaunchScreen.storyboard */; };
+		32395A8B27C92A4C002D037E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32395A8927C929F1002D037E /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		32395A7D27C91AC1002D037E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32395A8027C91AC1002D037E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32395A8227C91AC1002D037E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32395A8927C929F1002D037E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32395A8B27C92A4C002D037E /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 			children = (
 				32395A7027C91AC0002D037E /* MapPic */,
 				32395A6F27C91AC0002D037E /* Products */,
+				32395A8827C929F1002D037E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +72,14 @@
 				32395A7A27C91AC0002D037E /* MapPic.xcdatamodeld */,
 			);
 			path = MapPic;
+			sourceTree = "<group>";
+		};
+		32395A8827C929F1002D037E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32395A8927C929F1002D037E /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +308,7 @@
 				DEVELOPMENT_TEAM = 4B3LS46Z5J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MapPic/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "You better be givin me that location :)";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -324,6 +337,7 @@
 				DEVELOPMENT_TEAM = 4B3LS46Z5J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MapPic/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "You better be givin me that location :)";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

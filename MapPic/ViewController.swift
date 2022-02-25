@@ -6,14 +6,35 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
 
+    @IBOutlet weak var mapView: MKMapView!
+    
+    let locationManager = CLLocationManager()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        navigationItem.title = "MapPic🗺"
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
+        mapView.userTrackingMode = .follow
     }
 
-
+    @IBAction func didTapCamera(_ sender: UIButton) {
+        print("selected camera")
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .authorizedWhenInUse: manager.startUpdatingLocation()
+        default: break
+        }
+    }
+    
 }
 
