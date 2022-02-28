@@ -25,6 +25,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
     
     let locationManager = CLLocationManager()
     
+    var currentLocation: CLLocation?
+    
     var goingToShowCollectionView = true
     
     var images = [UIImage]()
@@ -47,6 +49,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
     }
 
     @IBAction func didTapCurrentLocation(_ sender: UIButton) {
+        print("tapped")
+        
+        guard let currentLocation = currentLocation else { return }
+        mapView.camera.centerCoordinate = currentLocation.coordinate
+
     }
     @IBAction func didTapToggleImages(_ sender: UIButton) {
         if goingToShowCollectionView == true {
@@ -79,6 +86,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
         }
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation = locations.last else { return }
+        self.currentLocation = currentLocation
+    }
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
