@@ -9,7 +9,8 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate, UICollectionViewDataSource {
+    
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var cameraButton: UIButton!
@@ -20,18 +21,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var cameraButtonBottomConstraint: NSLayoutConstraint!
     
+    let picker = UIImagePickerController()
     
     let locationManager = CLLocationManager()
+    
     var goingToShowCollectionView = true
+    
+    var images = [UIImage]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "MapPic🗺"
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        
         mapView.userTrackingMode = .follow
+        
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        
         showImagesButton.layer.cornerRadius = showImagesButton.frame.height / 2
         collectionViewTopConstraint.constant = 65
+        cameraButtonBottomConstraint.constant = 20
     }
 
     @IBAction func didTapCurrentLocation(_ sender: UIButton) {
@@ -57,7 +69,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         goingToShowCollectionView = !goingToShowCollectionView
     }
     @IBAction func didTapCamera(_ sender: UIButton) {
-        print("selected camera")
+        present(picker, animated: true, completion: nil)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -65,6 +77,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         case .authorizedWhenInUse: manager.startUpdatingLocation()
         default: break
         }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true, completion: nil)
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        images.append(image)
+        imageCollectionView.reloadData()
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
+        
+        let image = images[indexPath.item]
+        
+        cell.populate(with: image)
+        
+        return cell
     }
     
 }

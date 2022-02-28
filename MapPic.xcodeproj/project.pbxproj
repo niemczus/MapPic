@@ -15,6 +15,7 @@
 		32395A7E27C91AC1002D037E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32395A7D27C91AC1002D037E /* Assets.xcassets */; };
 		32395A8127C91AC1002D037E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32395A7F27C91AC1002D037E /* LaunchScreen.storyboard */; };
 		32395A8B27C92A4C002D037E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32395A8927C929F1002D037E /* MapKit.framework */; };
+		32E584AD27CCFEE5005A0B82 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E584AC27CCFEE5005A0B82 /* ImageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		32395A8027C91AC1002D037E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32395A8227C91AC1002D037E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32395A8927C929F1002D037E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		32E584AC27CCFEE5005A0B82 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				32395A7F27C91AC1002D037E /* LaunchScreen.storyboard */,
 				32395A8227C91AC1002D037E /* Info.plist */,
 				32395A7A27C91AC0002D037E /* MapPic.xcdatamodeld */,
+				32E584AC27CCFEE5005A0B82 /* ImageCell.swift */,
 			);
 			path = MapPic;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 				32395A7C27C91AC0002D037E /* MapPic.xcdatamodeld in Sources */,
 				32395A7227C91AC0002D037E /* AppDelegate.swift in Sources */,
 				32395A7427C91AC0002D037E /* SceneDelegate.swift in Sources */,
+				32E584AD27CCFEE5005A0B82 /* ImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
