@@ -8,8 +8,9 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Cluster
 
-class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate, UICollectionViewDataSource {
+class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate, UICollectionViewDataSource, MKMapViewDelegate {
     
 
     @IBOutlet weak var mapView: MKMapView!
@@ -21,20 +22,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
     @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var cameraButtonBottomConstraint: NSLayoutConstraint!
     
+    let logo: UIImage? = UIImage(named: "logo")
+    let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+    
+    
     let picker = UIImagePickerController()
     
     let locationManager = CLLocationManager()
-    
     var currentLocation: CLLocation?
+    let clusterManager = ClusterManager()
+    
     
     var goingToShowCollectionView = true
-    
     var images = [UIImage]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "MapPic🗺"
+        
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = logo
+        navigationItem.titleView = imageView
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
@@ -79,6 +87,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
         present(picker, animated: true, completion: nil)
     }
     
+    func addAnnotation(with image: UIImage) {
+        guard let currentLocation = currentLocation else { return }
+        let annotation = Annotation()
+        annotation.coordinate = currentLocation.coordinate
+        clusterManager.add(annotation)
+        clusterManager.reload(mapView: mapView)
+    }
+    
+    //MARK: - Location Manager Delegates
+    
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .authorizedWhenInUse: manager.startUpdatingLocation()
@@ -90,6 +108,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
         guard let currentLocation = locations.last else { return }
         self.currentLocation = currentLocation
     }
+    
+    //MARK: - Image Picker Delegates
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
@@ -99,9 +119,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
         dismiss(animated: true, completion: nil)
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
         images.append(image)
-        imageCollectionView.reloadData()
         
+        addAnnotation(with: image)
+        
+        imageCollectionView.reloadData()
     }
+    
+    //MARK: - Collection View Data Sources Delegates
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
@@ -114,6 +139,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
         cell.populate(with: image)
         
         return cell
+    }
+    
+    //MARK: - Map View Delegates
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let clusterAnnotation = annotation as? ClusterAnnotation {
+            let identifier = "cluster"
+            var view = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            
+            if let clusterAnnotationView = view as? ClusterAnnotationView {
+                clusterAnnotationView.annotation = clusterAnnotation
+            } else {
+                let clusterAnnotationView = ClusterAnnotationView(annotation: clusterAnnotation, reuseIdentifier: identifier)
+                clusterAnnotationView.tintColor = .purple
+                clusterAnnotationView.countLabel.text = String(clusterAnnotation.annotations.count)
+                view = clusterAnnotationView
+                
+                return view
+            }
+        } else if let annotation = annotation as? Annotation {
+            let identifier = "photo"
+            var view = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            
+            if let annotationView = view {
+                annotationView.annotation = annotation
+            } else {
+                let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView.pinTintColor = .green
+                view = annotationView
+                
+                return view
+            }
+        }
+        return nil
+        
     }
     
 }

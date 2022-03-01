@@ -1,0 +1,16 @@
+PODS:
+  - Cluster (3.0.3)
+
+DEPENDENCIES:
+  - Cluster
+
+SPEC REPOS:
+  trunk:
+    - Cluster
+
+SPEC CHECKSUMS:
+  Cluster: d72510594f60d901905953aafdc811d1888177ae
+
+PODFILE CHECKSUM: b1f9a38c0509684a791d206d5563241ca9e24cdf
+
+COCOAPODS: 1.11.2
