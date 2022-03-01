@@ -54,6 +54,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
         showImagesButton.layer.cornerRadius = showImagesButton.frame.height / 2
         collectionViewTopConstraint.constant = 65
         cameraButtonBottomConstraint.constant = 20
+        
     }
 
     @IBAction func didTapCurrentLocation(_ sender: UIButton) {
@@ -89,7 +90,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
     
     func addAnnotation(with image: UIImage) {
         guard let currentLocation = currentLocation else { return }
-        let annotation = Annotation()
+        let annotation = PhotoAnnotation(image: image)
         annotation.coordinate = currentLocation.coordinate
         clusterManager.add(annotation)
         clusterManager.reload(mapView: mapView)
@@ -150,26 +151,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
             if let clusterAnnotationView = view as? ClusterAnnotationView {
                 clusterAnnotationView.annotation = clusterAnnotation
             } else {
+
                 let clusterAnnotationView = ClusterAnnotationView(annotation: clusterAnnotation, reuseIdentifier: identifier)
-                clusterAnnotationView.tintColor = .purple
-                clusterAnnotationView.countLabel.text = String(clusterAnnotation.annotations.count)
+//                clusterAnnotationView.tintColor = .purple
+//                clusterAnnotationView.countLabel.text = String(clusterAnnotation.annotations.count)
                 view = clusterAnnotationView
-                
-                return view
             }
-        } else if let annotation = annotation as? Annotation {
+            return view
+            
+        } else if let photoAnnotation = annotation as? PhotoAnnotation {
             let identifier = "photo"
             var view = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
             
             if let annotationView = view {
-                annotationView.annotation = annotation
+                annotationView.annotation = photoAnnotation
             } else {
-                let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView.pinTintColor = .green
+                let annotationView = MKAnnotationView(annotation: photoAnnotation, reuseIdentifier: identifier)
                 view = annotationView
-                
-                return view
             }
+            
+            view?.image = photoAnnotation.resizedImage
+            
+            return view
+            
         }
         return nil
         

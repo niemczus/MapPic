@@ -17,6 +17,7 @@
 		32395A8127C91AC1002D037E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32395A7F27C91AC1002D037E /* LaunchScreen.storyboard */; };
 		32395A8B27C92A4C002D037E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32395A8927C929F1002D037E /* MapKit.framework */; };
 		32E584AD27CCFEE5005A0B82 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E584AC27CCFEE5005A0B82 /* ImageCell.swift */; };
+		32E584AF27CE8B35005A0B82 /* PhotoAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E584AE27CE8B35005A0B82 /* PhotoAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		32395A8227C91AC1002D037E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32395A8927C929F1002D037E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		32E584AC27CCFEE5005A0B82 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		32E584AE27CE8B35005A0B82 /* PhotoAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAnnotation.swift; sourceTree = "<group>"; };
 		717B90D5F5D14D182D95AF16 /* Pods-MapPic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPic.release.xcconfig"; path = "Target Support Files/Pods-MapPic/Pods-MapPic.release.xcconfig"; sourceTree = "<group>"; };
 		874AE1212E66E57BFF36F2DA /* Pods-MapPic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapPic.debug.xcconfig"; path = "Target Support Files/Pods-MapPic/Pods-MapPic.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +81,7 @@
 				32395A8227C91AC1002D037E /* Info.plist */,
 				32395A7A27C91AC0002D037E /* MapPic.xcdatamodeld */,
 				32E584AC27CCFEE5005A0B82 /* ImageCell.swift */,
+				32E584AE27CE8B35005A0B82 /* PhotoAnnotation.swift */,
 			);
 			path = MapPic;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				32395A7227C91AC0002D037E /* AppDelegate.swift in Sources */,
 				32395A7427C91AC0002D037E /* SceneDelegate.swift in Sources */,
 				32E584AD27CCFEE5005A0B82 /* ImageCell.swift in Sources */,
+				32E584AF27CE8B35005A0B82 /* PhotoAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
