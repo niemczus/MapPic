@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 import Cluster
 
-class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate, UICollectionViewDataSource, MKMapViewDelegate, UICollectionViewDelegate {
+class ViewController: UIViewController {
     
 
     @IBOutlet weak var mapView: MKMapView!
@@ -96,8 +96,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
         clusterManager.reload(mapView: mapView)
     }
     
-    //MARK: - Location Manager Delegates
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if let imageViewerVC = segue.destination as? ImageViewerVC, let image = sender as? UIImage {
+            imageViewerVC.image = image
+        }
+    }
+}
+
+//MARK: - Location Manager Delegate
+
+extension ViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
         case .authorizedWhenInUse: manager.startUpdatingLocation()
@@ -109,9 +119,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
         guard let currentLocation = locations.last else { return }
         self.currentLocation = currentLocation
     }
-    
-    //MARK: - Image Picker Delegates
+}
 
+//MARK: - Image Picker Controller Delegates
+
+extension ViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -125,9 +137,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
         
         imageCollectionView.reloadData()
     }
-    
-    //MARK: - Collection View Data Sources Delegates
-    
+}
+
+//MARK: - Collection View Data Source Delegates
+
+extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
@@ -141,15 +155,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
         
         return cell
     }
-    
-    //MARK: - Collection View Delegate
-    
+}
+
+//MARK: - Collection View Delegates
+
+extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let image = images[indexPath.item]
         performSegue(withIdentifier: "segue.Main.mapToImageViewer", sender: image)
     }
-    
-    //MARK: - Map View Delegates
+}
+
+//MARK: - Map View Delegates
+
+extension ViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let clusterAnnotation = annotation as? ClusterAnnotation {
             let identifier = "cluster"
@@ -184,16 +203,5 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
             
         }
         return nil
-        
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        if let imageViewerVC = segue.destination as? ImageViewerVC, let image = sender as? UIImage {
-            imageViewerVC.image = image
-        }
-    }
-    
 }
-
