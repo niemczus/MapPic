@@ -87,6 +87,7 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="YP4-hc-VCG"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="rXK-P7-Gwa"/>
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aH-XR-YyD">
@@ -101,25 +102,25 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="fJI-bH-Toy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="JMS-0B-Jdw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1o7-ih-e1m"/>
+                            <constraint firstItem="JMS-0B-Jdw" firstAttribute="leading" secondItem="fJI-bH-Toy" secondAttribute="leading" id="1o7-ih-e1m"/>
                             <constraint firstItem="JMS-0B-Jdw" firstAttribute="top" secondItem="1aH-XR-YyD" secondAttribute="bottom" constant="8" id="85I-wZ-4Wp"/>
-                            <constraint firstItem="xqM-Lr-ZX8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="AaZ-MS-B7T"/>
+                            <constraint firstItem="xqM-Lr-ZX8" firstAttribute="top" secondItem="fJI-bH-Toy" secondAttribute="top" constant="40" id="AaZ-MS-B7T"/>
                             <constraint firstItem="QKh-Wp-ZdL" firstAttribute="leading" relation="lessThanOrEqual" secondItem="1aH-XR-YyD" secondAttribute="trailing" constant="190" id="KBi-L8-oIJ"/>
-                            <constraint firstItem="1aH-XR-YyD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="Og5-ob-MOY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QKh-Wp-ZdL" secondAttribute="trailing" constant="20" id="QTO-Q3-LIf"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xqM-Lr-ZX8" secondAttribute="trailing" constant="20" id="Us3-bX-cnz"/>
-                            <constraint firstItem="N3f-ki-qJC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="hWz-kp-t1K"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JMS-0B-Jdw" secondAttribute="bottom" constant="-134" id="jaC-Xa-74T"/>
+                            <constraint firstItem="1aH-XR-YyD" firstAttribute="leading" secondItem="fJI-bH-Toy" secondAttribute="leading" constant="20" id="Og5-ob-MOY"/>
+                            <constraint firstItem="fJI-bH-Toy" firstAttribute="trailing" secondItem="QKh-Wp-ZdL" secondAttribute="trailing" constant="20" id="QTO-Q3-LIf"/>
+                            <constraint firstItem="fJI-bH-Toy" firstAttribute="trailing" secondItem="xqM-Lr-ZX8" secondAttribute="trailing" constant="20" id="Us3-bX-cnz"/>
+                            <constraint firstItem="N3f-ki-qJC" firstAttribute="top" secondItem="fJI-bH-Toy" secondAttribute="top" id="hWz-kp-t1K"/>
+                            <constraint firstItem="fJI-bH-Toy" firstAttribute="bottom" secondItem="JMS-0B-Jdw" secondAttribute="bottom" constant="-134" id="jaC-Xa-74T"/>
                             <constraint firstAttribute="bottom" secondItem="N3f-ki-qJC" secondAttribute="bottom" id="mNk-b4-0sM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N3f-ki-qJC" secondAttribute="trailing" id="oCS-Yg-yfJ"/>
-                            <constraint firstItem="QKh-Wp-ZdL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="320" id="qj7-h9-J0C"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QKh-Wp-ZdL" secondAttribute="bottom" id="qv8-LY-cC4"/>
-                            <constraint firstItem="JMS-0B-Jdw" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uEh-8d-Doc"/>
-                            <constraint firstItem="xqM-Lr-ZX8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="320" id="ySN-0R-KqM"/>
-                            <constraint firstItem="N3f-ki-qJC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="z47-O7-I3k"/>
+                            <constraint firstItem="fJI-bH-Toy" firstAttribute="trailing" secondItem="N3f-ki-qJC" secondAttribute="trailing" id="oCS-Yg-yfJ"/>
+                            <constraint firstItem="QKh-Wp-ZdL" firstAttribute="leading" secondItem="fJI-bH-Toy" secondAttribute="leading" constant="320" id="qj7-h9-J0C"/>
+                            <constraint firstItem="fJI-bH-Toy" firstAttribute="bottom" secondItem="QKh-Wp-ZdL" secondAttribute="bottom" id="qv8-LY-cC4"/>
+                            <constraint firstItem="JMS-0B-Jdw" firstAttribute="trailing" secondItem="fJI-bH-Toy" secondAttribute="trailing" id="uEh-8d-Doc"/>
+                            <constraint firstItem="xqM-Lr-ZX8" firstAttribute="leading" secondItem="fJI-bH-Toy" secondAttribute="leading" constant="320" id="ySN-0R-KqM"/>
+                            <constraint firstItem="N3f-ki-qJC" firstAttribute="leading" secondItem="fJI-bH-Toy" secondAttribute="leading" id="z47-O7-I3k"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="MapPic" id="mqc-dt-XqN"/>
@@ -131,11 +132,55 @@
                         <outlet property="imageCollectionView" destination="JMS-0B-Jdw" id="76S-EU-Z7R"/>
                         <outlet property="mapView" destination="N3f-ki-qJC" id="Ww7-2k-fgF"/>
                         <outlet property="showImagesButton" destination="1aH-XR-YyD" id="L08-Ph-sVX"/>
+                        <segue destination="YJE-7U-rPC" kind="show" identifier="segue.Main.mapToImageViewer" id="bYQ-R4-oyg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="886.95652173913049" y="63.616071428571423"/>
+        </scene>
+        <!--Image-->
+        <scene sceneID="1NJ-kC-YzZ">
+            <objects>
+                <viewController id="YJE-7U-rPC" customClass="ImageViewerVC" customModule="MapPic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oaZ-hs-Rn0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" maximumZoomScale="10" translatesAutoresizingMaskIntoConstraints="NO" id="JkH-KZ-HUo">
+                                <rect key="frame" x="0.0" y="110" width="414" height="786"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pDU-JD-AdE">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="586"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="pDU-JD-AdE" firstAttribute="trailing" secondItem="oJv-hj-fbU" secondAttribute="trailing" id="AXh-99-Qf5"/>
+                                    <constraint firstItem="pDU-JD-AdE" firstAttribute="leading" secondItem="oJv-hj-fbU" secondAttribute="leading" id="Q7E-4r-gLL"/>
+                                    <constraint firstItem="pDU-JD-AdE" firstAttribute="top" secondItem="oJv-hj-fbU" secondAttribute="top" id="UkI-Y6-1R1"/>
+                                    <constraint firstItem="pDU-JD-AdE" firstAttribute="bottom" secondItem="oJv-hj-fbU" secondAttribute="bottom" constant="-200" id="yoV-td-cgy"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="gqe-3O-1c8"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="oJv-hj-fbU"/>
+                                <connections>
+                                    <outlet property="delegate" destination="YJE-7U-rPC" id="oJ9-Vq-njO"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ebw-Ic-mlC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Image" id="EOp-JM-qO5">
+                        <barButtonItem key="backBarButtonItem" title="Map" id="jTi-Kt-A44"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="pDU-JD-AdE" id="P1D-Fu-8Du"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v51-sj-F6w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1786.9565217391305" y="63.616071428571423"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vhA-qt-Xkj">
@@ -166,9 +211,13 @@
             <point key="canvasLocation" x="-23.188405797101453" y="63.616071428571423"/>
         </scene>
     </scenes>
+    <color key="tintColor" systemColor="linkColor"/>
     <resources>
         <image name="cameraIcon" width="50" height="50"/>
         <image name="currentLocationIcon" width="50" height="50"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

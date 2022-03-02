@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 import Cluster
 
-class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate, UICollectionViewDataSource, MKMapViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate, UICollectionViewDataSource, MKMapViewDelegate, UICollectionViewDelegate {
     
 
     @IBOutlet weak var mapView: MKMapView!
@@ -142,6 +142,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
         return cell
     }
     
+    //MARK: - Collection View Delegate
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let image = images[indexPath.item]
+        performSegue(withIdentifier: "segue.Main.mapToImageViewer", sender: image)
+    }
+    
     //MARK: - Map View Delegates
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let clusterAnnotation = annotation as? ClusterAnnotation {
@@ -150,6 +157,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
             
             if let clusterAnnotationView = view as? ClusterAnnotationView {
                 clusterAnnotationView.annotation = clusterAnnotation
+                
             } else {
 
                 let clusterAnnotationView = ClusterAnnotationView(annotation: clusterAnnotation, reuseIdentifier: identifier)
@@ -177,6 +185,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UIImagePicker
         }
         return nil
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if let imageViewerVC = segue.destination as? ImageViewerVC, let image = sender as? UIImage {
+            imageViewerVC.image = image
+        }
     }
     
 }
